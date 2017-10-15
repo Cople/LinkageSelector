@@ -1,0 +1,52 @@
+{
+  "name": "linkage-selector",
+  "version": "1.0.0",
+  "description": "JavaScript 多级联动下拉菜单选择器",
+  "main": "dist/linkage-selector.min.js",
+  "module": "src/index.js",
+  "scripts": {
+    "build": "rollup --config",
+    "watch": "rollup --config --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cople/LinkageSelector.git"
+  },
+  "keywords": [
+    "联动菜单",
+    "省市联动",
+    "城市选择器"
+  ],
+  "author": "Cople",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cople/LinkageSelector/issues"
+  },
+  "homepage": "https://cople.github.io/LinkageSelector",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false,
+          "targets": {
+            "browsers": [
+              "last 3 major versions",
+              "ie >= 9"
+            ]
+          }
+        }
+      ]
+    ],
+    "plugins": ["external-helpers"]
+  },
+  "dependencies": {}
+}
