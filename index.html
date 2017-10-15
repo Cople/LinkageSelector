@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LinkageSelector</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/syntaxhighlighter/syntaxhighlighter@2.1.364/Styles/shCore.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/syntaxhighlighter/syntaxhighlighter@2.1.364/Styles/shThemeDefault.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.8.1/themes/prism.css">
 </head>
 <body class="m-5">
 
-<h1>LinkageSelector <small class="badge badge-secondary">(jQuery plugin)</small></h1>
+<h1>LinkageSelector</h1>
 <p>JavaScript 多级联动下拉菜单选择器 <a href="https://cople.github.io/LinkageSelector" class="badge badge-primary align-middle"><svg class="align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> <span class="align-middle">Frok me on GitHub</span></a></p>
 <hr>
 
@@ -23,12 +22,13 @@
         <select class="form-control mr-2"><option>加载中</option></select>
     </form>
 
-    <pre class="brush: js">$('#demo1').linkageSelector({
+    <pre><code class="language-javascript">var demo1 = new LinkageSelector({
+    container: '#demo1',
     data: {
         水果: ['西瓜', '柠檬', '草莓', '荔枝', '橘子', '菠萝', '香蕉', '柚子', '苹果', '龙眼'],
         蔬菜: ['香菜', '青菜', '芦笋', '萝卜', '水芹', '黄瓜', '冬瓜', '番茄', '茄子', '土豆']
     }
-});</pre>
+});</code></pre>
 </section>
 
 <section class="mb-5">
@@ -44,7 +44,8 @@
         <button type="button" class="btn btn-danger mr-2 reset">Reset</button>
     </form>
 
-    <pre class="brush: js">$('#demo2').linkageSelector({
+    <pre><code class="language-javascript">var demo2 = new LinkageSelector({
+    container: '#demo2',
     dataUrl: 'https://cdn.rawgit.com/modood/Administrative-divisions-of-China/master/dist/pca.json',
     placeholder: ['省', '市', '区'],
     defaultValue: ['海南省', '三沙市', '西沙群岛'],
@@ -54,14 +55,14 @@
     }
 });
 
-$('#demo2 .set').click(function() {
-    $('#demo2').linkageSelector('setValue', ['云南省', '昆明市', '呈贡区']);
-});
+document.querySelector('#demo2 .set').onclick = function() {
+    demo2.setValue(['云南省', '云南省', '呈贡区']);
+}
 
-$('#demo2 .reset').click(function() {
-    $('#demo2').linkageSelector('resetValue');
-});
-</pre>
+document.querySelector('#demo2 .reset').onclick = function() {
+    demo2.resetValue();
+}
+</code></pre>
 </section>
 
 <section class="mb-5">
@@ -70,7 +71,8 @@ $('#demo2 .reset').click(function() {
 
     <form class="form-inline" id="demo3"></form>
 
-    <pre class="brush: js">$('#demo3').linkageSelector({
+    <pre><code class="language-javascript">var demo3 = new LinkageSelector({
+    container: '#demo3',
     dataUrl: 'https://cdn.rawgit.com/modood/Administrative-divisions-of-China/master/dist/pcas-code.json',
     placeholder: false,
     emptyStyle: 'hidden',
@@ -80,26 +82,24 @@ $('#demo2 .reset').click(function() {
         });
     },
     onChange: function(value) {
-        console.log('#demo3', value);
+        console.log('#demo3:onChange', value);
     }
-});</pre>
+});</code></pre>
 </section>
 
-<script src="https://cdn.jsdelivr.net/gh/jquery/jquery@1.12.4/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/syntaxhighlighter/syntaxhighlighter@2.1.364/Scripts/shCore.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/syntaxhighlighter/syntaxhighlighter@2.1.364/Scripts/shBrushJScript.js"></script>
-<script src="../dist/jquery.linkage-selector.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/PrismJS/prism@1.8.1/prism.js"></script>
+<script src="https://unpkg.com/linkage-selector/dist/linkage-selector.min.js"></script>
 <script>
-SyntaxHighlighter.all();
-
-$('#demo1').linkageSelector({
+var demo1 = new LinkageSelector({
+    container: '#demo1',
     data: {
         水果: ['西瓜', '柠檬', '草莓', '荔枝', '橘子', '菠萝', '香蕉', '柚子', '苹果', '龙眼'],
         蔬菜: ['香菜', '青菜', '芦笋', '萝卜', '水芹', '黄瓜', '冬瓜', '番茄', '茄子', '土豆']
     }
 });
 
-$('#demo2').linkageSelector({
+var demo2 = new LinkageSelector({
+    container: '#demo2',
     dataUrl: 'https://cdn.rawgit.com/modood/Administrative-divisions-of-China/master/dist/pca.json',
     placeholder: ['省', '市', '区'],
     defaultValue: ['海南省', '三沙市', '西沙群岛'],
@@ -109,15 +109,16 @@ $('#demo2').linkageSelector({
     }
 });
 
-$('#demo2 .set').click(function() {
-    $('#demo2').linkageSelector('setValue', ['云南省', '昆明市', '呈贡区']);
-});
+document.querySelector('#demo2 .set').onclick = function() {
+    demo2.setValue(['云南省', '昆明市', '呈贡区']);
+};
 
-$('#demo2 .reset').click(function() {
-    $('#demo2').linkageSelector('resetValue');
-});
+document.querySelector('#demo2 .reset').onclick = function() {
+    demo2.resetValue();
+};
 
-$('#demo3').linkageSelector({
+var demo3 = new LinkageSelector({
+    container: '#demo3',
     dataUrl: 'https://cdn.rawgit.com/modood/Administrative-divisions-of-China/master/dist/pcas-code.json',
     placeholder: false,
     emptyStyle: 'hidden',
@@ -133,14 +134,14 @@ $('#demo3').linkageSelector({
 </script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46659645-7"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46659645-7"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'UA-46659645-7');
-</script> -->
+</script>
 
 </body>
 </html>
